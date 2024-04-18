@@ -3,20 +3,12 @@ package com.silbqt.vknewsclient
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.silbqt.vknewsclient.ui.theme.PostCard
-import com.silbqt.vknewsclient.ui.theme.VkNewsClientTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            /*
             VkNewsClientTheme {
                 Box(modifier = Modifier
                     .fillMaxSize()
@@ -26,9 +18,62 @@ class MainActivity : ComponentActivity() {
                     PostCard()
                 }
             }
+            */
+
         }
     }
 }
+
+/*
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview(showBackground = true)
+@Composable
+private fun Test() {
+    Scaffold (
+        topBar = {
+            TopAppBar(
+                title = { Text(text = "TopAppBar title") },
+                navigationIcon = {
+                    IconButton(onClick = {}) {
+                        Icon(imageVector = Icons.Filled.Menu, contentDescription = null)
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary
+                )
+            )
+        },
+        bottomBar = {
+            NavigationBar {
+                NavigationBarItem(
+                    selected = true,
+                    onClick = {},
+                    icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
+                    label = { Text(text = "Favorite") }
+                )
+                NavigationBarItem(
+                    selected = true,
+                    onClick = {},
+                    icon = { Icon(Icons.Outlined.Edit, contentDescription = null) },
+                    label = { Text(text = "Edit") }
+                )
+                NavigationBarItem(
+                    selected = true,
+                    onClick = {},
+                    icon = { Icon(Icons.Outlined.Delete, contentDescription = null) },
+                    label = { Text(text = "Delete") }
+                )
+            }
+        },
+    ) {
+        Text(
+            modifier = Modifier
+                .padding(it),
+            text = "hey"
+        )
+    }
+}
+*/
 
 /*
 @Preview(showBackground = true)
