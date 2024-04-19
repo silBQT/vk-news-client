@@ -1,5 +1,6 @@
 package com.silbqt.vknewsclient.ui.theme
 
+import android.util.Log
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -27,7 +28,10 @@ import kotlinx.coroutines.launch
 @Preview
 @Composable
 fun MainScreen() {
-    val snackbarHostState = SnackbarHostState()
+    val snackbarHostState = remember {
+        SnackbarHostState()
+    }
+    Log.d("MainScreen", snackbarHostState.currentSnackbarData.toString())
     val scope = rememberCoroutineScope()
     val isFabVisible = remember { mutableStateOf(true) }
 
