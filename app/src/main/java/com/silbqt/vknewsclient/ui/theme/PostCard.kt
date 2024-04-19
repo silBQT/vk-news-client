@@ -20,13 +20,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.silbqt.vknewsclient.R
 import com.silbqt.vknewsclient.domain.FeedPost
@@ -38,7 +36,10 @@ import java.lang.IllegalStateException
 fun PostCard(
     modifier: Modifier = Modifier,
     feedPost: FeedPost,
-    onFooterItemClickListener: (StatisticItem) -> Unit
+    onViewClickListener: (StatisticItem) -> Unit,
+    onShareClickListener: (StatisticItem) -> Unit,
+    onCommentClickListener: (StatisticItem) -> Unit,
+    onLikeClickListener: (StatisticItem) -> Unit,
 ) {
     Card(
         modifier = modifier,
@@ -58,7 +59,10 @@ fun PostCard(
                     .height(8.dp))
             PostFooter(
                 statistics = feedPost.statistics,
-                onItemClickListener = onFooterItemClickListener
+                onViewClickListener = onViewClickListener,
+                onShareClickListener = onShareClickListener,
+                onCommentClickListener = onCommentClickListener,
+                onLikeClickListener = onLikeClickListener
             )
         }
 
@@ -128,7 +132,10 @@ private fun PostContent(
 @Composable
 private fun PostFooter(
     statistics: List<StatisticItem>,
-    onItemClickListener: (StatisticItem) -> Unit
+    onViewClickListener: (StatisticItem) -> Unit,
+    onShareClickListener: (StatisticItem) -> Unit,
+    onCommentClickListener: (StatisticItem) -> Unit,
+    onLikeClickListener: (StatisticItem) -> Unit,
 ) {
     Row (
         verticalAlignment = Alignment.CenterVertically,
@@ -144,7 +151,7 @@ private fun PostFooter(
                 icon = R.drawable.ic_views_count,
                 value = viewsItem.count.toString(),
                 onItemClickListener = {
-                    onItemClickListener(viewsItem)
+                    onViewClickListener(viewsItem)
                 }
             )
         }
@@ -158,7 +165,7 @@ private fun PostFooter(
                 icon = R.drawable.ic_share,
                 value = sharesItem.count.toString(),
                 onItemClickListener = {
-                    onItemClickListener(sharesItem)
+                    onShareClickListener(sharesItem)
                 }
             )
             val commentsItem = statistics.getItemByType(StatisticType.COMMENTS)
@@ -166,7 +173,7 @@ private fun PostFooter(
                 icon = R.drawable.ic_comment,
                 value = commentsItem.count.toString(),
                 onItemClickListener = {
-                    onItemClickListener(commentsItem)
+                    onCommentClickListener(commentsItem)
                 }
             )
             val likesItem = statistics.getItemByType(StatisticType.LIKES)
@@ -174,7 +181,7 @@ private fun PostFooter(
                 icon = R.drawable.ic_like,
                 value = likesItem.count.toString(),
                 onItemClickListener = {
-                    onItemClickListener(likesItem)
+                    onLikeClickListener(likesItem)
                 }
             )
         }
